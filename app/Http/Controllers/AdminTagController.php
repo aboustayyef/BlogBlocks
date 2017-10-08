@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
+use App\Tag;
 use Illuminate\Http\Request;
 
-class AdminBlogController extends Controller
+class AdminTagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::paginate(15);
-        return view('admin.blog.index')->with(compact('blogs'));
+        $tags = Tag::all(); 
+        return view('admin.tag.index')->with(compact('tags'));
     }
 
     /**
@@ -25,8 +25,8 @@ class AdminBlogController extends Controller
      */
     public function create()
     {
-        $blog = new Blog;
-        return view('admin.blog.create')->with(compact('blog'));
+        $tag = new Tag;
+        return view('admin.tag.create')->with(compact('tag'));
     }
 
     /**
@@ -37,14 +37,13 @@ class AdminBlogController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate(Blog::validationRules());
-       
-       Blog::Create($request->except(['_token']));
-       return redirect('/admin/blog')->with('message', 'Blog has been successfully created');
+       $request->validate(Tag::validationRules());
+       Tag::create($request->except('_token')); 
+       return redirect(route('tag.index'))->with('message', 'Tag Created Succesfully');
     }
 
     /**
-     * Display the specfied resource.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,11 +61,7 @@ class AdminBlogController extends Controller
      */
     public function edit($id)
     {
-       $blog = Blog::find($id);
-       if ($blog) {
-           return view('admin.blog.edit')->with(compact('blog')); 
-       }
-       return response('Record Not Found', 404);
+        //
     }
 
     /**
@@ -76,12 +71,9 @@ class AdminBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-       $request->validate(Blog::validationRules(false));
-
-       $blog->update($request->except(['_token']));
-       return redirect('/admin/blog')->with('message', 'Blog has been successfully updated');
+        //
     }
 
     /**

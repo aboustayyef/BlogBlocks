@@ -18,6 +18,7 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('admin')->middleware('auth')->group(function(){
     Route::resource('blog', 'AdminBlogController')->except('show');
+    Route::resource('tag', 'AdminTagController')->except('show');
 });
 
 Route::get('/', function () {

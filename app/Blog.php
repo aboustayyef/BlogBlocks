@@ -12,9 +12,9 @@ class Blog extends Model
      * These are the rules for validating field form submissions
      * @return array 
      */
-    public static function validationRules()
+    public static function validationRules($create = true)
     {
-       return [
+        $rules =  [
             'name'  =>  'required|min:6',
             'url'   =>  'required|url',
             'nickname'=> 'required|alpha_num',
@@ -22,5 +22,9 @@ class Blog extends Model
             'twitter'  =>   'required|alpha_dash',
             'rss'   =>  'required|url',      
        ];
+       if ($create) {
+           $rules['nickname'] .= '|unique:blogs';
+       }
+       return $rules;
     }
 }
