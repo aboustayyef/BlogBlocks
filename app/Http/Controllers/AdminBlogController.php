@@ -14,8 +14,7 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::paginate(15);
-        return view('admin.blog.index')->with(compact('blogs'));
+        return view('admin.blog.index');
     }
 
     /**

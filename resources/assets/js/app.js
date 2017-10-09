@@ -9,8 +9,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import { TableComponent, TableColumn } from 'vue-table-component';
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -18,9 +16,6 @@ import { TableComponent, TableColumn } from 'vue-table-component';
  */
 
 // Vue.component('example', require('./components/Example.vue'));
-Vue.component('table-component', TableComponent);
-Vue.component('table-column', TableColumn);
-
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
