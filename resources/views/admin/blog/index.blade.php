@@ -14,6 +14,8 @@
         </div>
         
     </div>
+    <div v-if="filter_key.length > 0" v-text="`Results: ${filtered_blogs.length}`" class="pull-right" style="padding:1em 0">
+    </div>
     <table class="table table-striped" style="margin-top:2em">
         <thead>
             <tr>
