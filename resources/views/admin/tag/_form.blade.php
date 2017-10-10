@@ -1,5 +1,4 @@
 {{csrf_field()}}
-
 <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
     <label for="nickname" class="control-label">Nickname (One Word That is Unique to the tag)</label>
     <input class="form-control" name="nickname" type="text" id="nickname" value="{{old('nickname', $tag->nickname)}}">
@@ -16,4 +15,35 @@
     <label for="color" class="control-label">color</label>
     <input class="form-control" name="color" type="text" id="color" value="{{old('color', $tag->color)}}">
     <small class="text-danger">{{ $errors->first('color') }}</small>
+</div>
+
+<label for="parent">Parent: </label>
+    <div class="form-group">
+        <select class="form-control" name="parent" id="parent">
+            <option value="null" @if( !$tag->parent || !old('parent') ) selected @endif>No Parent</option>
+            @foreach($tags as $potential_parent)
+                @if($tag->parent && !old('parent'))
+                    <option 
+                        value="{{$potential_parent->id}}"
+                        @if( $tag->parent->name == $potential_parent->name ) ) 
+                            selected 
+                        @endif >
+                        {{$potential_parent->description}}
+                    </option> 
+                @elseif(old('parent'))
+                    <option 
+                        value="{{$potential_parent->id}}"
+                        @if( $potential_parent->id == old('parent') ) 
+                            selected 
+                        @endif >
+                        {{$potential_parent->description}}
+                    </option> 
+                @else
+                    <option value="{{$potential_parent->id}}">
+                        {{$potential_parent->description}}
+                    </option>
+                @endif
+            @endforeach
+            {{-- <option @if((strstr($employee->parent, 'Accra Head Office') || @in_array('Accra Head Office', old('parent')))) selected @endif>Accra Head Office</option> --}}
+        </select>
 </div>

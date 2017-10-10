@@ -26,7 +26,8 @@ class AdminTagController extends Controller
     public function create()
     {
         $tag = new Tag;
-        return view('admin.tag.create')->with(compact('tag'));
+        $tags = Tag::all();
+        return view('admin.tag.create')->with(compact('tag'))->with(compact('tags'));
     }
 
     /**
@@ -59,9 +60,10 @@ class AdminTagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tag.edit')->with(compact('tag'))->with(compact('tags'));
     }
 
     /**
@@ -73,7 +75,8 @@ class AdminTagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $request->validate(Tag::validationRules());
+       
     }
 
     /**

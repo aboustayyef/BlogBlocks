@@ -18,6 +18,7 @@ class CreateTagsTable extends Migration
             $table->string('nickname');
             $table->string('description')->nullable();
             $table->string('color')->nullable();
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

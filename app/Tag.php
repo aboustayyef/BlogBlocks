@@ -8,6 +8,10 @@ class Tag extends Model
 {
     protected $guarded=['id'];
     
+    public function parent()
+    {
+      return $this->belongsTo('App\Tag','parent_id');             
+    }
     /**
      * These are the rules for validating field form submissions
      * @return array 
