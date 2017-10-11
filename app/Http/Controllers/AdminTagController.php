@@ -39,7 +39,12 @@ class AdminTagController extends Controller
     public function store(Request $request)
     {
        $request->validate(Tag::validationRules());
-       Tag::create($request->except('_token')); 
+       $tag = Tag::create($request->except(['_token','parent']));
+       if ($request->get('parent') != "null") {
+        $parent = Tag::find($request->get('parent'));
+        $tag->parent()->associate($parent);        
+        $tag->save();
+       }
        return redirect(route('tag.index'))->with('message', 'Tag Created Succesfully');
     }
 

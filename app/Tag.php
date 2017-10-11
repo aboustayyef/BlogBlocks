@@ -28,3 +28,5 @@ class Tag extends Model
        return $rules;
     }
 }
+
+
