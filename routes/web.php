@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function(){
+    return response('This is the home page. You don\'t have to be logged in to see this', 200);
+});
+
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
@@ -25,11 +29,5 @@ Route::prefix('api')->middleware('auth')->group(function(){
 Route::prefix('admin')->middleware('auth')->group(function(){
     Route::resource('blog', 'AdminBlogController')->except('show');
     Route::resource('tag', 'AdminTagController')->except('show');
+    Route::get('/', 'AdminController@index');
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/home', 'HomeController@index')->name('home');
