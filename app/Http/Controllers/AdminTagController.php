@@ -80,7 +80,7 @@ class AdminTagController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $request->validate(Tag::validationRules());
+       $request->validate(Tag::validationRules(false));
        
     }
 
