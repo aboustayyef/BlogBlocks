@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.administration');
 @section('content')
     <div class="container">
         <h1>Edit Tag</h1>
