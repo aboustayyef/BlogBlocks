@@ -13,8 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Manage Blogs</td>
+                                <td><a href="/admin/blog" class="btn btn-primary">Go</a></td>
+                            </tr>
+                            <tr>
+                                <td>Manage Tags</td>
+                                <td><a href="/admin/tag" class="btn btn-primary">Go</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
                 </div>
             </div>
         </div>
