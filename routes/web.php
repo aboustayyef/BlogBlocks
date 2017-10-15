@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function(){
-    return response('This is the home page. You don\'t have to be logged in to see this', 200);
+    return view('home');
 });
 
 // Authentication Routes...
