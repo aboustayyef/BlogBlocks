@@ -30,9 +30,11 @@
                                 selected 
                             @endif 
                         @else 
-                            @if( $tag->parent->id == $potential_parent->id ) ) 
-                                selected 
-                            @endif 
+                            @if($tag->hasParent())
+                                @if( $tag->parent->id == $potential_parent->id ) ) 
+                                    selected 
+                                @endif 
+                            @endif
                         @endif 
                     >
                         {{$potential_parent->description}}

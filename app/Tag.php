@@ -12,6 +12,15 @@ class Tag extends Model
     {
       return $this->belongsTo('App\Tag','parent_id');             
     }
+
+    public function hasParent()
+    {
+      if ($this->parent()->count() > 0) {
+        return $this->parent;
+      }
+      return false;
+    }
+
     /**
      * These are the rules for validating field form submissions
      * @return array 
