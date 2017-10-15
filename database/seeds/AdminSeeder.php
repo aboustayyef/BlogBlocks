@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminSeeder extends Seeder
 {
@@ -10,8 +11,13 @@ class AdminSeeder extends Seeder
      *
      * @return void
      */
+
+    
     public function run()
     {
+        // Erase old Data
+        DB::table('users')->truncate();
+        
         $admin = new User;
         $admin->name = "Mustapha";
         $admin->email = "mustapha.hamoui@gmail.com";
