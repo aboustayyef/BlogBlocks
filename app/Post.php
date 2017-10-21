@@ -13,4 +13,8 @@ class Post extends Model
         'posted_at'
     ]; 
     //
+    public static function uid_exists($uid)
+    {
+        return Static::where('uid',$uid)->count() > 0;
+    }
 }

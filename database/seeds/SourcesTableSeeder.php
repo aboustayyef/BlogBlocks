@@ -15,28 +15,28 @@ class SourcesTableSeeder extends Seeder
     
     public function run()
     {
-        $fileLocation = database_path(). '/blogs.csv';
+        $fileLocation = database_path(). '/sources.csv';
 
         // Get CSV content from goods.csv in storage
         $csv = Reader::createFromPath($fileLocation);
 
         // Remove Headers
-        $blogs = collect($csv->setOffset(1)->fetchAll());
+        $sources = collect($csv->setOffset(1)->fetchAll());
 
         DB::table('sources')->truncate();
 
-        foreach ($blogs as $key => $blog) {
+        foreach ($sources as $key => $source) {
             Source::create([
-                'name'              =>  trim($blog[1]),
-                'nickname'          =>  $blog[0],
-                'description'       =>  $blog[2],
-                'url'               =>  $blog[3],
-                'author'            =>  $blog[4],
-                'twitter'           =>  $blog[5],
+                'name'              =>  trim($source[1]),
+                'nickname'          =>  $source[0],
+                'description'       =>  $source[2],
+                'url'               =>  $source[3],
+                'author'            =>  $source[4],
+                'twitter'           =>  $source[5],
                 'fetcher_kind'      =>  'rss',
-                'fetcher_source'    =>  $blog[6],
-                'active'            =>  $blog[9],
-                'why_deactivated'   =>  $blog[16]
+                'fetcher_source'    =>  $source[6],
+                'active'            =>  $source[9],
+                'why_deactivated'   =>  $source[16]
             ]);
         }
     }

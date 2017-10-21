@@ -8,6 +8,10 @@ class Source extends Model
 {
     protected $guarded=['id'];
     
+    public function posts()
+    {
+      return $this->hasMany('App\Post');
+    }
     /**
      * These are the rules for validating field form submissions
      * @return array 
