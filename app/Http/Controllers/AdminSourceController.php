@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
+use App\Source;
 use Illuminate\Http\Request;
 
-class AdminBlogController extends Controller
+class AdminSourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
-        return view('admin.blog.index');
+        return view('admin.source.index');
     }
 
     /**
@@ -24,8 +24,8 @@ class AdminBlogController extends Controller
      */
     public function create()
     {
-        $blog = new Blog;
-        return view('admin.blog.create')->with(compact('blog'));
+        $source = new Source;
+        return view('admin.source.create')->with(compact('source'));
     }
 
     /**
@@ -36,10 +36,10 @@ class AdminBlogController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate(Blog::validationRules());
+       $request->validate(Source::validationRules());
        
-       Blog::Create($request->except(['_token']));
-       return redirect('/admin/blog')->with('message', 'Blog has been successfully created');
+       Source::Create($request->except(['_token']));
+       return redirect('/admin/source')->with('message', 'Source has been successfully created');
     }
 
     /**
@@ -59,11 +59,10 @@ class AdminBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Source $source)
     {
-       $blog = Blog::find($id);
-       if ($blog) {
-           return view('admin.blog.edit')->with(compact('blog')); 
+       if ($source) {
+           return view('admin.source.edit')->with(compact('source')); 
        }
        return response('Record Not Found', 404);
     }
@@ -75,12 +74,12 @@ class AdminBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Source $source)
     {
-       $request->validate(Blog::validationRules(false));
+       $request->validate(Source::validationRules(false));
 
-       $blog->update($request->except(['_token']));
-       return redirect('/admin/blog')->with('message', 'Blog has been successfully updated');
+       $source->update($request->except(['_token']));
+       return redirect('/admin/source')->with('message', 'Source has been successfully updated');
     }
 
     /**
@@ -89,9 +88,9 @@ class AdminBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Source $source)
     {
-        $blog->delete();
-        return redirect(route('blog.index'))->with('message', 'Blog Succesfully Deleted'); 
+        $source->delete();
+        return redirect(route('source.index'))->with('message', 'Source Succesfully Deleted'); 
     }
 }

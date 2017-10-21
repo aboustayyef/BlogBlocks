@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Source extends Model
 {
     protected $guarded=['id'];
     
@@ -14,13 +14,15 @@ class Blog extends Model
      */
     public static function validationRules($create = true)
     {
+        $available_fetcher_kinds = ['rss'];
         $rules =  [
             'name'  =>  'required|min:6',
             'url'   =>  'required|url',
             'nickname'=> 'required|alpha_num',
             'description'   =>  'max:140',
             'twitter'  =>   'required|alpha_dash',
-            'rss'   =>  'required|url',      
+            'fetcher_source'   =>  'required|url',      
+            'fetcher_kind'   =>  'in:'. implode(',', $available_fetcher_kinds),      
        ];
        if ($create) {
            $rules['nickname'] .= '|unique:blogs';

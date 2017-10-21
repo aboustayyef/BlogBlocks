@@ -21,13 +21,13 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('api')->middleware('auth')->group(function(){
-	Route::get('blog', function(){
-		return App\Blog::all();
+	Route::get('source', function(){
+		return App\Source::all();
 	});
 });
 
 Route::prefix('admin')->middleware('auth')->group(function(){
-    Route::resource('blog', 'AdminBlogController')->except('show');
+    Route::resource('source', 'AdminSourceController')->except('show');
     Route::resource('tag', 'AdminTagController')->except('show');
     Route::get('/', 'AdminController@index');
 });

@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="/admin/blog/{{$blog->id}}" >
+    <form method="POST" action="/admin/source/{{$source->id}}" >
         <input name="_method" type="hidden" value="PUT">
-        @include('admin.blog._form')
+        @include('admin.source._form')
     <input type="submit" class="btn btn-primary"></input>
     </form>
     <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#areYouSure">
-      Delete Blog
+      Delete source
     </button>
 
 {{-- Modal --}}
@@ -21,14 +21,14 @@
 
           </div>
           <div class="modal-body">
-            <p>Deleting this blog will remove all their data</p>
+            <p>Deleting this source will remove all their data</p>
           </div>
           <div class="modal-footer">
-            <form method="POST" action="{{route('blog.destroy', ['id'=>$blog->id])}}">
+            <form method="POST" action="{{route('source.destroy', ['id'=>$source->id])}}">
                 {{csrf_field()}}
                 <input name="_method" type="hidden" value="DELETE">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Yes, permanently delete blog</button>
+                <button type="submit" class="btn btn-danger">Yes, permanently delete source</button>
             </form>
           </div>
         </div><!-- /.modal-content -->

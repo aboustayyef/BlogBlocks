@@ -1,11 +1,11 @@
 <?php
 
-use App\Blog;
+use App\Source;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 
-class BlogsTableSeeder extends Seeder
+class SourcesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,17 +23,18 @@ class BlogsTableSeeder extends Seeder
         // Remove Headers
         $blogs = collect($csv->setOffset(1)->fetchAll());
 
-        DB::table('blogs')->truncate();
+        DB::table('sources')->truncate();
 
         foreach ($blogs as $key => $blog) {
-            Blog::create([
+            Source::create([
                 'name'              =>  trim($blog[1]),
                 'nickname'          =>  $blog[0],
                 'description'       =>  $blog[2],
                 'url'               =>  $blog[3],
                 'author'            =>  $blog[4],
                 'twitter'           =>  $blog[5],
-                'rss'               =>  $blog[6],
+                'fetcher_kind'      =>  'rss',
+                'fetcher_source'    =>  $blog[6],
                 'active'            =>  $blog[9],
                 'why_deactivated'   =>  $blog[16]
             ]);

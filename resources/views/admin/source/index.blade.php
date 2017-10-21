@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div>
-        <h1>Blogs At LB</h1>
+        <h1>sources At LB</h1>
         <div class="row">
             <div class="col-md-2">
-                <a href="{{route('blog.create')}}" class="btn btn-primary">Create New Blog</a>
+                <a href="{{route('source.create')}}" class="btn btn-primary">Create New source</a>
             </div>
             <div class="col-md-4 pull-right">
                 <input type="text" placeholder="Filter Results" v-model="filter_key" class="form-control">
@@ -14,7 +14,7 @@
         </div>
         
     </div>
-    <div v-if="filter_key.length > 0" v-text="`Results: ${filtered_blogs.length}`" class="pull-right" style="padding:1em 0">
+    <div v-if="filter_key.length > 0" v-text="`Results: ${filtered_sources.length}`" class="pull-right" style="padding:1em 0">
     </div>
     <table class="table table-striped" style="margin-top:2em">
         <thead>
@@ -27,12 +27,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="blog in this.filtered_blogs" v-if="appReady"> 
-                <th v-text="blog.id"></th>
-                <td>@{{blog.name}}</td>
-                <td>@{{blog.description}}</td>
-                <td>@{{blog.author}}</td>
-                <td><a :href=`/admin/blog/${blog.id}/edit`>edit</a></td>
+            <tr v-for="source in this.filtered_sources" v-if="appReady"> 
+                <th v-text="source.id"></th>
+                <td>@{{source.name}}</td>
+                <td>@{{source.description}}</td>
+                <td>@{{source.author}}</td>
+                <td><a :href=`/admin/source/${source.id}/edit`>edit</a></td>
             </tr>
         </tbody>
     </table> 
@@ -44,21 +44,21 @@
         var app = new Vue({
             el: '#app',
             mounted(){
-                axios.get('/api/blog').then((response) => {
-                    this.all_blogs= response.data;
+                axios.get('/api/source').then((response) => {
+                    this.all_sources= response.data;
                     this.appReady = 1;
                 });
             },
             data: {
                 appReady : 0,
-                all_blogs: [],
+                all_sources: [],
                 filter_key: "",
             },
             computed: {
                 // a computed getter
-                filtered_blogs: function () {
-                    return this.all_blogs.filter((blog) =>
-                        (blog.name.toLowerCase().includes(this.filter_key.toLowerCase()) || blog.name.toLowerCase().includes(this.filter_key.toLowerCase()) || blog.description.toLowerCase().includes(this.filter_key.toLowerCase()) || blog.author.toLowerCase().includes(this.filter_key.toLowerCase()))
+                filtered_sources: function () {
+                    return this.all_sources.filter((source) =>
+                        (source.name.toLowerCase().includes(this.filter_key.toLowerCase()) || source.name.toLowerCase().includes(this.filter_key.toLowerCase()) || source.description.toLowerCase().includes(this.filter_key.toLowerCase()) || source.author.toLowerCase().includes(this.filter_key.toLowerCase()))
                     );
                 }
               },
@@ -66,7 +66,7 @@
             {
                 sortNumeric: function(e){
                     var sorting_key = e.target.dataset.sort;
-                    this.all_blogs.sort(function(a,b){
+                    this.all_sources.sort(function(a,b){
                         var valueA = a[sorting_key];
                         var valueB = b[sorting_key];
                         if (valueA < valueB) {
@@ -81,7 +81,7 @@
                 sort: function(e){
                     // sort by name
                     var sorting_key = e.target.dataset.sort;
-                    this.all_blogs.sort(function(a, b) {
+                    this.all_sources.sort(function(a, b) {
                       var valueA = a[sorting_key].toUpperCase(); // ignore upper and lowercase
                       var valueB = b[sorting_key].toUpperCase(); // ignore upper and lowercase
                       if (valueA < valueB) {

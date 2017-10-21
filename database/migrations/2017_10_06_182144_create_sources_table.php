@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogsTable extends Migration
+class CreateSourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('sources', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('nickname');
@@ -21,7 +21,8 @@ class CreateBlogsTable extends Migration
             $table->string('url');
             $table->string('author')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('rss');
+            $table->string('fetcher_kind');
+            $table->string('fetcher_source');
             $table->boolean('active')->default(1);
             $table->text('why_deactivated')->nullable();
             $table->timestamps();
@@ -35,6 +36,6 @@ class CreateBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('sources');
     }
 }
