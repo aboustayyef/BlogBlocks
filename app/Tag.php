@@ -20,6 +20,23 @@ class Tag extends Model
       }
       return false;
     }
+    public static function exists($nickname)
+    {
+      return Static::where('nickname', $nickname)->count() > 0;
+    }
+
+    public static function getByNickname($nickname)
+    {
+      return Static::where('nickname', $nickname)->first();
+    }
+
+    public static function getByNicknameTopmost($nickname)
+    {
+      if (Static::getByNickname($nickname)->hasParent()) {
+        return Static::getByNickname($nickname)->parent;
+      }
+      return Static::getByNickname($nickname);
+    }
 
     /**
      * These are the rules for validating field form submissions
@@ -35,6 +52,12 @@ class Tag extends Model
             $rules['nickname'] .= '|unique:tags';
        }
        return $rules;
+    }
+
+
+    public function sources()
+    {
+      return $this->belongsToMany('App\Source');
     }
 }
 

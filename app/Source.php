@@ -33,4 +33,8 @@ class Source extends Model
        }
        return $rules;
     }
+    public function tags()
+    {
+      return $this->BelongsToMany('App\Tag');
+    }
 }

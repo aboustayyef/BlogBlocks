@@ -29,12 +29,37 @@ class TagsTableSeeder extends Seeder
 
         // Delete exisiting Tags in database to start anew
         DB::Table('tags')->truncate();
-
+        DB::Table('source_tag')->truncate();
+        
+        // Add Level one items (items with no parents)
         foreach ($this->list as $item) {
             Tag::Create([
                 'nickname'          =>  $item[0],
                 'description'       =>  $item[1],
                 'color'             =>  $item[2]
+            ]);
+        }
+
+        // Add Children
+        $children =  [
+            'style'       => 'fashion',
+            'health'      => 'food',
+            'family'      => 'society',
+            'business'    => 'tech',
+            'music'       => 'media',
+            'tv'          => 'media',
+            'film'        => 'media',
+            'advertising' => 'design',
+            'photography' => 'design',
+            'art'         => 'design',
+        ];
+
+        foreach ($children as $child => $parent) {
+            $parent_id = Tag::where('nickname', $parent)->first()->id;
+            Tag::Create([
+                'nickname'  =>  $child,
+                'description'   =>  'Deprecated Category. Always forward to Parent',
+                'parent_id' =>  $parent_id
             ]);
         }
     }
