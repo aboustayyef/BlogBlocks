@@ -59,6 +59,16 @@ class Tag extends Model
     {
       return $this->belongsToMany('App\Source');
     }
+
+    public static function createListFromString($string){
+      $tags = collect(explode(',', $string));                  // process tag strings like "society, politics"
+      $tags = $tags->filter(function($tag){                    // remove tags that don't exist in tags db
+          return Static::exists(trim($tag));
+      })->map(function($tag){                                     // get the uppermost tag object: example: tv > media 
+          return Static::getByNicknameTopmost(trim($tag))->id;
+      })->unique();  
+      return $tags;
+    }
 }
 
 

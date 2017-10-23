@@ -42,12 +42,7 @@ class SourcesTableSeeder extends Seeder
             ]);
 
             // Attach Tags to Sources
-            $tags = collect(explode(',', $source[7]));                  // process tag strings like "society, politics"
-            $tags = $tags->filter(function($tag){                       // remove tags that don't exist in tags db
-                return Tag::exists(trim($tag));
-            })->map(function($tag){                                     // get the uppermost tag object: example: tv > media 
-                return Tag::getByNicknameTopmost(trim($tag))->id;
-            })->unique();                                               // remove duplicates
+            $tags = Tag::createListFromString($source[7]);              
             $result->tags()->attach($tags);                             // attach
         }   
     }
