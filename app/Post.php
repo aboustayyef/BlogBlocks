@@ -17,4 +17,11 @@ class Post extends Model
     {
         return Static::where('uid',$uid)->count() > 0;
     }
+
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
 }

@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\Source;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use League\Csv\Reader;
@@ -34,7 +35,7 @@ class PostsTableSeeder extends Seeder
             $uid = $post[6] == 'NULL' ? $post[5] . $key: $post[6];      // Get UID or Create if Doesnt exist
             if ($source_id !== 9999) {                                  // Prevent Including Blogs that no longer exist
                 if (! Post::uid_exists($uid)) {                         // Prevent Duplicate Posts
-                    Post::create([
+                    $new_post = Post::create([
                         'title'         =>  $post[0],
                         'url'           =>  $post[1],
                         'excerpt'       =>  $post[2],
@@ -42,6 +43,8 @@ class PostsTableSeeder extends Seeder
                         'uid'           => $uid,
                         'source_id'     =>  $source_id 
                     ]);
+                    $tags = Tag::createListFromString($post[4]);
+                    $new_post->tags()->attach($tags);
                 }
             }
         }
