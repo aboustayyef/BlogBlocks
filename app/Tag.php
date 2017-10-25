@@ -8,22 +8,32 @@ class Tag extends Model
 {
     protected $guarded=['id'];
     
+    /**
+     * 
+     * Eloquent Relationships
+     * 
+     */
+
     public function parent()
     {
       return $this->belongsTo('App\Tag','parent_id');             
     }
 
-    public function hasParent()
+    public function sources()
     {
-      if ($this->parent()->count() > 0) {
-        return $this->parent;
-      }
-      return false;
+      return $this->belongsToMany('App\Source');
     }
-    public static function exists($nickname)
+
+    public function posts()
     {
-      return Static::where('nickname', $nickname)->count() > 0;
+      return $this->belongsToMany('App\Post');
     }
+
+    /**
+     *
+     * Static Getter Functions
+     * 
+     */
 
     public static function getByNickname($nickname)
     {
@@ -39,27 +49,62 @@ class Tag extends Model
     }
 
     /**
-     * These are the rules for validating field form submissions
-     * @return array 
+     * 
+     * Utility functions
+     * 
      */
+
+    public function hasParent()
+    {
+      if ($this->parent()->count() > 0) {
+        return $this->parent;
+      }
+      return false;
+    }
+
+    public static function exists($nickname)
+    {
+      return Static::where('nickname', $nickname)->count() > 0;
+    }
+
+
+    /**
+     * 
+     * Form Validation 
+     * 
+     */
+    
     public static function validationRules($create=true)
     {
        $rules = [
             'description'  =>  'required|min:6',
             'nickname'=> 'required|alpha_num',
        ];
+
+       // This is a conditional validation rule
+       // that only applies for when creating records
+       // when editing a record, the 'unique' validation
+       // for the nickname should not be applied
+
        if ($create) {
             $rules['nickname'] .= '|unique:tags';
        }
+       
        return $rules;
     }
 
 
-    public function sources()
-    {
-      return $this->belongsToMany('App\Source');
-    }
-
+    /**
+     * 
+     * Function to convert a string to a list of Tag Ids
+     * 
+     * Useful mainly for importing from the old Database, where tags were
+     * listed in columns in the posts and blogs tables
+     * 
+     * @param  String $string (like 'politics, society')
+     * @return Collection of Tag Ids $tags ()
+     */
+    
     public static function createListFromString($string){
       $tags = collect(explode(',', $string));                  // process tag strings like "society, politics"
       $tags = $tags->filter(function($tag){                    // remove tags that don't exist in tags db
