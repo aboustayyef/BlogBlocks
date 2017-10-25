@@ -7,9 +7,10 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "itsgoingd/clockwork": "^2.0",
         "laravel/framework": "5.5.*",
-        "league/csv": "^8.0",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "league/csv": "^8.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
