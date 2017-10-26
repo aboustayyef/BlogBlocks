@@ -29,4 +29,8 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    public static function uidExists($uid)
+    {
+        return Static::where('uid',$uid)->count() > 0;
+    }
 }
