@@ -12,6 +12,29 @@ class Source extends Model
     {
       return $this->hasMany('App\Post');
     }
+
+    public static function getByNickname($nickname)
+    {
+      try {
+       return Static::where('nickname',$nickname)->first(); 
+      } catch (\Exception $e) {
+        return null;
+      }
+    }
+
+    public function updatePosts()
+    {
+      $className = 'App\Fetchers\\' . $this->fetcher_kind . 'Fetcher';
+
+      // Fetch The Posts into a collection;
+      $posts = (new $className($this))->fetch();
+      if ($posts->count() == 0) {
+        return 'No New Posts Available';
+      }
+      return $posts->count() . ' new posts saved';
+    }
+
+
     /**
      * These are the rules for validating field form submissions
      * @return array 
