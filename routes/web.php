@@ -27,7 +27,7 @@ Route::prefix('api')->middleware('auth')->group(function(){
 });
 
 Route::prefix('admin')->middleware('auth')->group(function(){
-    Route::resource('source', 'AdminSourceController')->except('show');
-    Route::resource('tag', 'AdminTagController')->except('show');
+    Route::resource('source', 'AdminSourceController', ['as' => 'admin'])->except('show');
+    Route::resource('tag', 'AdminTagController',['as' => 'admin'])->except('show');
     Route::get('/', 'AdminController@index');
 });

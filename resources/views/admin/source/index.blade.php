@@ -6,7 +6,7 @@
         <h1>sources At LB</h1>
         <div class="row">
             <div class="col-md-2">
-                <a href="{{route('source.create')}}" class="btn btn-primary">Create New source</a>
+                <a href="{{route('admin.source.create')}}" class="btn btn-primary">Create New source</a>
             </div>
             <div class="col-md-4 pull-right">
                 <input type="text" placeholder="Filter Results" v-model="filter_key" class="form-control">

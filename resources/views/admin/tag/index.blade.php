@@ -4,7 +4,7 @@
 <div class="container">
    <div>
         <h1>Tags in LB</h1>
-        <a href="{{route('tag.create')}}" class="btn btn-primary pull-right">Create New tag</a>
+        <a href="{{route('admin.tag.create')}}" class="btn btn-primary pull-right">Create New tag</a>
    </div>
     <table class="table table-striped">
         <thead>
@@ -23,7 +23,7 @@
                     <td>{{$tag->nickname}}</td>
                     <td>{{$tag->description}}</td>
                     <td>{{$tag->color}}</td>
-                    <td><a href="{{route('tag.edit', ['id' => $tag->id])}}">edit</a></td>
+                    <td><a href="{{route('admin.tag.edit', ['id' => $tag->id])}}">edit</a></td>
                 </tr>
             @endforeach
         </tbody>
