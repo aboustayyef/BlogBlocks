@@ -7,45 +7,56 @@ use App\Source;
 use Carbon\Carbon;
 use Embed\Embed;
 
-
 class rssFetcher implements Fetchable
 {
 	
+	private $list_of_post_links; // raw collection of link and uid keys
+
 	function __construct(Source $source)
 	{
 		$this->source = $source;
 	}
-
 	public function fetch()
+	{
+		$this->list_of_post_links = $this->get_list_of_post_links();
+		$this->list_of_new_posts = $this->get_new_posts();
+		return $this->list_of_new_posts;
+	}
+
+	public function get_list_of_post_links()
 	{
 		$rss_feed = $this->source->fetcher_source; 
 		$feed = \Feeds::make($rss_feed);
-		$source_id = $this->source->id;
 
 		// get all Items in the RSS feed
 		$items = collect($feed->get_items());
 
-		// filter out the ones that already exist in the database
-		$items = $items->filter(function($item) use ($source_id){
-			return ! Post::uidExists($item->get_id());
-		
-		// Keep only the url and the uid
-		})->map(function($item) use ($source_id){
+		// keep only url and id
+		$items = $items->map(function($item) {
 			return [ 'url' => $item->get_link(), 'uid' => $item->get_id()];
-
-		// Convert to Posts using data taken from link embed
-		})->map(function($item) use ($source_id){
-			$e = Embed::create($item['url']);
-			return Post::create([
-				'uid'			=>	$item['uid'],
-				'title'			=>	$e->title,
-				'url'			=>	$e->url,
-				'excerpt'		=>	$e->description,
-				'posted_at'		=> new Carbon($e->publishedTime),
-				'source_id'		=>	$source_id
-			]);
 		});
 
 		return $items;
+	}
+
+	public function get_new_posts()
+	{
+		// filter out posts that already exist in the database
+		$new_links = $this->list_of_post_links->filter(function($item) {
+			return ! Post::uidExists($item['uid']);
+		});
+		
+		$posts = $new_links->map(function($item){
+			$e = Embed::create($item['url']);
+			$post = new Post;
+			$post->uid = $item['uid'];
+			$post->title = $e->title;
+			$post->url = $e->url;
+			$post->excerpt = $e->description;
+			$post->posted_at = new Carbon($e->publishedTime);
+			return $post;
+		});
+
+		return $posts;
 	}
 }
