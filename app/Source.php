@@ -28,8 +28,14 @@ class Source extends Model
 
       // Fetch The Posts into a collection;
       $posts = (new $className($this))->fetch();
+
       if ($posts->count() == 0) {
         return 'No New Posts Available';
+      }
+      
+      foreach ($posts as $post) {
+        $post->source_id = $this->id;
+        $post->save(); 
       }
       return $posts->count() . ' new posts saved';
     }

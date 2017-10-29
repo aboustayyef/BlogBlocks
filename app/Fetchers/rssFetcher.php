@@ -11,6 +11,7 @@ class rssFetcher implements Fetchable
 {
 	
 	private $list_of_post_links; // raw collection of link and uid keys
+	private $list_of_new_posts; // collection of App\Post obejcts of new posts only
 
 	function __construct(Source $source)
 	{
