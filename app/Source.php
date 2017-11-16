@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Source extends Model
@@ -20,6 +21,11 @@ class Source extends Model
       } catch (\Exception $e) {
         return null;
       }
+    }
+
+    public function daysSinceLastPost()
+    {
+      return $this->posts->last()->posted_at->diffInDays(new Carbon);
     }
 
     public function updatePosts()

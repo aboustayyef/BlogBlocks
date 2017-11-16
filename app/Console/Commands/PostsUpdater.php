@@ -49,15 +49,20 @@ class PostsUpdater extends Command
                 $this->info('done');
                 return;
             }
-            throw new \Exception("Source " . $this->argument('source') . " not found", 1);
+            throw new \Exception("Source [" . $this->argument('source') . "] not found", 1);
         }
         
         // If No source is specified
         $sources = Source::all();
         $start_time = time();
         foreach ($sources as $source) {
-            $this->info('updating source ' . $source->name );
-            $this->info('ok');
+            $this->comment('updating source ' . $source->name );
+            try {
+                $status = $source->updatePosts();
+                $this->info($status);
+            } catch (\Exception $e) {
+                $this->error('There was an error updating this source');
+            }
         }
         $end_time = time();
         $diff = $end_time - $start_time;
