@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('excerpt')->nullable();
             $table->dateTime('posted_at'); 
             $table->integer('source_id');
+            $table->text('original_image')->nullabe();
             $table->string('uid')->unique();
             $table->timestamps();
         });

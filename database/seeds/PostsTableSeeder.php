@@ -36,12 +36,13 @@ class PostsTableSeeder extends Seeder
             if ($source_id !== 9999) {                                  // Prevent Including Blogs that no longer exist
                 if (! Post::uid_exists($uid)) {                         // Prevent Duplicate Posts
                     $new_post = Post::create([
-                        'title'         =>  $post[0],
-                        'url'           =>  $post[1],
-                        'excerpt'       =>  $post[2],
-                        'posted_at'     =>  Carbon::createFromTimestamp($post[3]),
-                        'uid'           => $uid,
-                        'source_id'     =>  $source_id 
+                        'title'             =>  $post[0],
+                        'url'               =>  $post[1],
+                        'excerpt'           =>  $post[2],
+                        'posted_at'         =>  Carbon::createFromTimestamp($post[3]),
+                        'original_image'    =>  $post[7],
+                        'uid'               =>  $uid,
+                        'source_id'         =>  $source_id 
                     ]);
                     $tags = Tag::createListFromString($post[4]);
                     $new_post->tags()->attach($tags);

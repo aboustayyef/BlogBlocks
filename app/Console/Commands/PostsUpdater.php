@@ -53,7 +53,7 @@ class PostsUpdater extends Command
         }
         
         // If No source is specified
-        $sources = Source::all();
+        $sources = Source::where('active', 1)->get();
         $start_time = time();
         foreach ($sources as $source) {
             $this->comment('updating source ' . $source->name );
