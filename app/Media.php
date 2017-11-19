@@ -21,6 +21,12 @@ class Media extends Model
 
     public static function createFromImage($img, $kind = 'post')
     {
+
+        // only two kinds are supported
+        if (!in_array($kind, ['post','source'])) {
+            throw new \Exception("kind has to be either 'post' or 'source'", 1);
+        }
+
         $img = Image::make($img);
         
         // guard against non-image formats
@@ -37,11 +43,7 @@ class Media extends Model
         {
             $img->fit(600,300);
         }
-        else
-        {
-            throw new \Exception("At the moment, Image has to be of kind 'source' or 'post'", 1);
-        }
-        
+
         // create unique name
         $pointer = $kind . '_' . time() . '_' . rand(999999999,1);
 
