@@ -5,8 +5,10 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h1>This is the home page</h1>
-    <p>You don't have to be logged in to see this</p>    
-    <p><a href="/admin">Go To Dashboard</a></p>
+@foreach($posts as $post)
+<h1>{{$post->title}}</h1>
+<img src="{{$post->image()}}">
+
+@endforeach
 </body>
 </html>

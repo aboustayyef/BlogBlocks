@@ -53,6 +53,9 @@ class Post extends Model
         Images and Media
      */
 
+    public function hasCache(){
+        return $this->media->count() > 0 ;
+    }
     /**
      * Get appropriate Image (choose between cache and original)
      * @return (string) Image Location
@@ -60,7 +63,7 @@ class Post extends Model
     public function image()
     {
         // if cache exists, return cache, 
-        if ($this->media->count() > 0) {
+        if ($this->hasCache()) {
             return '/img/media/'.$this->media->first()->pointer;
         }
         // other wise if an original image exists, return it
@@ -70,7 +73,13 @@ class Post extends Model
         // otherwise, no image exists;
         return null;
     }
-    
+    public function rgb()
+     {
+         if ($this->hasCache()) {
+            return json_decode($this->media()->latest()->take(1)->first()->dominant_color);
+        }
+        return null;
+     } 
     /**
      * Cache original image if cache doesn't exist
      * @return null 

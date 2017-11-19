@@ -46,6 +46,7 @@ class PostsTableSeeder extends Seeder
                     ]);
                     $tags = Tag::createListFromString($post[4]);
                     $new_post->tags()->attach($tags);
+                    $new_post->cacheImage();
                 }
             }
         }

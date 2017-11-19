@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,8 @@
 */
 
 Route::get('/', function(){
-    return view('home');
+    $posts = Post::with(['Media','Source'])->orderBy('posted_at','desc')->take(10)->get();
+    return view('home')->with(compact('posts'));
 });
 
 // Authentication Routes...
