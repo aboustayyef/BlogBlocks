@@ -18,7 +18,10 @@ class Post extends Model
     {
         return $this->belongsTo('App\Source');
     }
-
+    public function media()
+    {
+      return $this->hasMany('App\Media');
+    }
     public static function uid_exists($uid)
     {
         return Static::where('uid',$uid)->count() > 0;

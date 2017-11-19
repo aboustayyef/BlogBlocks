@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Media;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,29 @@ class Source extends Model
     {
       return $this->hasMany('App\Post');
     }
+    public function media()
+    {
+      return $this->hasMany('App\Media');
+    }
+    
+    public function createAvatar($img)
+    {
+      $avatar = Media::createFromImage($img, 'source');
+      $avatar->source_id = $this->id;
+      $avatar->save();
+    } 
+    
+    public function hasAvatar()
+    {
+      # code...
+    }
 
+    public function avatar(){
+      if (! $this->hasAvatar()) {
+        return null;
+      }
+
+    }
     public static function getByNickname($nickname)
     {
       try {
