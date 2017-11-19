@@ -7,7 +7,13 @@
 <body>
 @foreach($posts as $post)
 <h1>{{$post->title}}</h1>
-<img src="{{$post->image()}}">
+@if($post->hasCache())
+<div style="background-color:{{$post->rgb()}}; padding:5px">
+    <img src="{{$post->image()}}">
+</div>
+@else
+    <img src="{{$post->image()}}">
+@endif
 
 @endforeach
 </body>

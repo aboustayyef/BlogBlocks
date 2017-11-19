@@ -76,7 +76,9 @@ class Post extends Model
     public function rgb()
      {
          if ($this->hasCache()) {
-            return json_decode($this->media()->latest()->take(1)->first()->dominant_color);
+            $values = json_decode($this->media()->latest()->take(1)->first()->dominant_color);
+            $string = 'rgb('.$values[0].','.$values[1].','.$values[2].')';
+            return $string;
         }
         return null;
      } 

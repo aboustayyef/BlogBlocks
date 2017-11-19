@@ -14,7 +14,7 @@ use App\Post;
 */
 
 Route::get('/', function(){
-    $posts = Post::with(['Media','Source'])->orderBy('posted_at','desc')->take(10)->get();
+    $posts = Post::with(['Media','Source'])->orderBy('posted_at','desc')->take(50)->get();
     return view('home')->with(compact('posts'));
 });
 
