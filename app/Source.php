@@ -63,8 +63,12 @@ class Source extends Model
       }
       
       foreach ($posts as $post) {
+        // attach to source
         $post->source_id = $this->id;
         $post->save(); 
+
+        // cache image
+        $post->cacheImage();
       }
       return $posts->count() . ' new posts saved';
     }

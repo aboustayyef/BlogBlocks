@@ -34,7 +34,7 @@ class Media extends Model
             throw new \Exception("Can only support jpeg and png images", 1);
         }
 
-        // use proper dimensions according to 
+        // use proper dimensions according to kind
         if ($kind == 'source') 
         {
             $img->fit(100,100);
