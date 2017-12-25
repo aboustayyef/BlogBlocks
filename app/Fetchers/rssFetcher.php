@@ -45,7 +45,7 @@ class rssFetcher implements Fetchable
 
 		// keep only url and id
 		$items = $items->map(function($item) {
-			return [ 'url' => $item->get_link(), 'uid' => $item->get_id()];
+			return [ 'url' => $item->get_link(), 'uid' => $item->get_id(), 'published_at' => $item->get_date()];
 		});
 
 		return $items;
@@ -71,7 +71,7 @@ class rssFetcher implements Fetchable
 			$post->url = $e->url;
 			$post->excerpt = $e->description;
 			$post->original_image = $e->image;
-			$post->posted_at = new Carbon($e->publishedTime);
+			$post->posted_at = new Carbon($item['published_at']);
 			return $post;
 		});
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Analyzers\SourceFrequencyAnalyzer;
 use App\Media;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -95,6 +96,12 @@ class Source extends Model
        }
        return $rules;
     }
+
+    public function calculateFrequency($sample_size = 20)
+    {
+      return (new SourceFrequencyAnalyzer($this, $sample_size))->median;
+    }
+
     public function tags()
     {
       return $this->BelongsToMany('App\Tag');
