@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\PostsUpdater::class,
         Commands\SourceFrequencyUpdater::class,
+        Commands\ScoreUpdater::class,
     ];
 
     /**

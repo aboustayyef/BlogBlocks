@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Score;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ Route::prefix('api')->group(function(){
 */
 
 Route::get('/', function(){
-    $posts = Post::with(['Media','Source'])->orderBy('posted_at','desc')->take(50)->get();
-    return view('home')->with(compact('posts'));
+    $scores = Score::with(['Post'])->orderBy('score','desc')->take(5)->get();
+    return view('home')->with(compact('scores'));
 });
 
 

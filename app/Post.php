@@ -4,6 +4,7 @@ namespace App;
 
 use App\Media;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -98,5 +99,27 @@ class Post extends Model
             $image->post_id = $this->id;
             $image->save();
         }
+    }
+
+    public function score(){
+        return $this->hasOne('App\Score');
+    }
+    
+    public function getFacebookLikes(){
+        // https://graph.facebook.com/?id=URL_GOES_HERE/&fields=og_object{engagement}
+        $client = new Client();
+            try {            
+                $response = $client->request('GET', 'https://graph.facebook.com', [
+                    'query' => [ 'id' => $this->url ]
+                ]);
+                $score_object = json_decode($response->getBody());
+                if (isset($score_object->share->share_count)) {
+                    return $score_object->share->share_count;
+                }
+                return null;
+            } catch (\Exception $e) {
+                return null;
+            }
+
     }
 }
