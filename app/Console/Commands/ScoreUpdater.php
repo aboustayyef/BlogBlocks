@@ -41,7 +41,6 @@ class ScoreUpdater extends Command
      */
     public function handle()
     {
-        $gravity = 1.2;
         $posts = Post::orderBy('posted_at','desc')->take(100)->get();
 
         foreach ($posts as $post) {
@@ -57,9 +56,26 @@ class ScoreUpdater extends Command
 
             $score->post_id = $post->id;
             $score->likes = $post->getFacebookLikes();
+            
             // age of post in hours
             $t = round(($post->posted_at->diffInMinutes((new Carbon()))/60),2);
             $score->hours_ago = $t;
+
+
+            // Gravity (the speed with which time affects score) Increases progressively in time brackets
+            $gravity_scale = [
+                0   =>  1.1,
+                12  =>  1.5, 
+                24  =>  1.8,
+                48  =>  2.5
+            ];
+            // find time bracket for gravity's value
+            foreach ($gravity_scale as $key => $value) {
+                if ($t > $key) {
+                    $gravity = $value;
+                }
+            }
+
             $score->score = round( ($score->likes * 100) / pow($t, $gravity), 2);
             $score->save();
         }

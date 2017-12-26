@@ -24,7 +24,7 @@ Route::prefix('api')->group(function(){
 */
 
 Route::get('/', function(){
-    $scores = Score::with(['Post'])->orderBy('score','desc')->take(5)->get();
+    $scores = Score::with(['Post'])->orderBy('score','desc')->take(15)->get();
     return view('home')->with(compact('scores'));
 });
 

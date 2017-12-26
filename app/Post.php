@@ -110,7 +110,10 @@ class Post extends Model
         $client = new Client();
             try {            
                 $response = $client->request('GET', 'https://graph.facebook.com', [
-                    'query' => [ 'id' => $this->url ]
+                    'query' => [ 
+                        'id' => $this->url ,
+                        'access_token' => env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_APP_SECRET')
+                    ]
                 ]);
                 $score_object = json_decode($response->getBody());
                 if (isset($score_object->share->share_count)) {
