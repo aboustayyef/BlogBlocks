@@ -17,7 +17,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         // If the Posts don't exist, import them using the following query (for digital ocean), or sequel pro for local:
-        // SELECT posts.`post_title`, posts.`post_url`, posts.`post_excerpt`, posts.`post_timestamp`, posts.`post_tags`, posts.`blog_id`,  posts.`post_rss_id` FROM posts INTO OUTFILE '/var/lib/mysql-files/lb_posts.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+        // SELECT posts.`post_title`, posts.`post_url`, posts.`post_excerpt`, posts.`post_timestamp`, posts.`post_tags`, posts.`blog_id`,  posts.`post_rss_id`, posts.`post_original_image` FROM posts INTO OUTFILE '/var/lib/mysql-files/lb_posts.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
         $fileLocation = storage_path(). '/app/lb_posts.csv';
 
