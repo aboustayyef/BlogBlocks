@@ -84,6 +84,5 @@ class ScoreUpdater extends Command
             }
             $score->save();
         }
-        //
     }
 }
