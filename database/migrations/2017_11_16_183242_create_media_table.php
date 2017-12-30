@@ -16,7 +16,7 @@ class CreateMediaTable extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pointer');
-            $table->json('dominant_color');
+            $table->text('dominant_color');
             $table->integer('post_id')->nullable()->unsigned();
             $table->integer('source_id')->nullable()->unsigned();
             $table->timestamps();
