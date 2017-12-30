@@ -77,6 +77,11 @@ class ScoreUpdater extends Command
             }
 
             $score->score = round( ($score->likes * 100) / pow($t, $gravity), 2);
+
+            $minimum_needed_likes = 10;
+            if ($score->likes < $minimum_needed_likes) {
+                $score->score = 0;
+            }
             $score->save();
         }
         //
