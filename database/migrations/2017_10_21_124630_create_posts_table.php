@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->dateTime('posted_at'); 
             $table->integer('source_id');
             $table->text('original_image')->nullabe();
-            $table->text('uid')->unique();
+            $table->string('uid')->unique();
             $table->timestamps();
         });
     }
