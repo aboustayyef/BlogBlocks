@@ -12062,10 +12062,13 @@ window.Vue = __webpack_require__(28);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
-// const app = new Vue({
-//     el: '#app'
-// });
+Vue.component('hot-posts', __webpack_require__(51));
+Vue.component('latest-posts', __webpack_require__(55));
+Vue.component('hot-post-card', __webpack_require__(58));
+
+var app = new Vue({
+  el: '#app'
+});
 
 /***/ }),
 /* 40 */
@@ -12093,6 +12096,533 @@ if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(52)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/components/HotPosts.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] HotPosts.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f9afcc1c", Component.options)
+  } else {
+    hotAPI.reload("data-v-f9afcc1c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            scores: [],
+            loaded: false
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/hot').then(function (res) {
+            _this.scores = res.data;
+            console.log(_this.scores);
+            _this.loaded = true;
+        });
+    }
+});
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", { staticClass: "title is-4" }, [_vm._v("Hot Posts")]),
+    _vm._v(" "),
+    _vm.loaded
+      ? _c(
+          "div",
+          { staticClass: "columns" },
+          _vm._l(_vm.scores, function(score) {
+            return _c(
+              "div",
+              { staticClass: "column is-one-quarter" },
+              [_c("hot-post-card", { attrs: { post: score.score.post } })],
+              1
+            )
+          })
+        )
+      : _c("div", [_vm._v("\n        Loading ...\n    ")])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f9afcc1c", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(52)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/components/LatestPosts.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] LatestPosts.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d8a96c60", Component.options)
+  } else {
+    hotAPI.reload("data-v-d8a96c60", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            posts: [],
+            loaded: false
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/posts').then(function (res) {
+            _this.posts = res.data;
+            _this.loaded = true;
+        });
+    }
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", { staticClass: "title is-4" }, [_vm._v("Recent Posts")]),
+    _vm._v(" "),
+    _vm.loaded
+      ? _c(
+          "div",
+          { staticClass: "columns is-multiline" },
+          _vm._l(_vm.posts, function(post) {
+            return _c(
+              "div",
+              { staticClass: "column is-one-fifth" },
+              [_c("hot-post-card", { attrs: { post: post } })],
+              1
+            )
+          })
+        )
+      : _c("div", [_vm._v("\n        Loading ...\n    ")])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d8a96c60", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(52)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/components/HotPostCard.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] HotPostCard.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4122f7fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-4122f7fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['post']
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-image" }, [
+      _c(
+        "figure",
+        {
+          staticClass: "image is-2by1",
+          staticStyle: { "border-bottom": "1px solid silver" }
+        },
+        [
+          _c("img", {
+            attrs: {
+              src: "/img/media/" + this.post.media[0].pointer,
+              alt: "Placeholder image"
+            }
+          })
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "media" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "media-content" }, [
+          _c("p", { staticClass: "title is-5" }, [
+            _vm._v(_vm._s(_vm.post.source.name))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-left" }, [
+      _c("figure", { staticClass: "image is-48x48" }, [
+        _c("img", {
+          attrs: {
+            src: "https://bulma.io/images/placeholders/48x48.png",
+            alt: "Placeholder image"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _vm._v(
+        "\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n      Phasellus nec iaculis mauris. "
+      ),
+      _c("a", [_vm._v("@bulmaio")]),
+      _vm._v(".\n      "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("#css")]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("#responsive")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("time", { attrs: { datetime: "2016-1-1" } }, [
+        _vm._v("11:09 PM - 1 Jan 2016")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4122f7fe", module.exports)
+  }
 }
 
 /***/ })

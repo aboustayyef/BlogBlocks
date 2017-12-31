@@ -8,7 +8,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
-// const app = new Vue({
-//     el: '#app'
-// });
+Vue.component('hot-posts', require('./components/HotPosts.vue'));
+Vue.component('latest-posts', require('./components/LatestPosts.vue'));
+Vue.component('hot-post-card', require('./components/HotPostCard.vue'));
+
+const app = new Vue({
+    el: '#app'
+});

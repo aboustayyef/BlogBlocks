@@ -11,6 +11,7 @@ use App\Score;
 
 Route::prefix('api')->group(function(){
     Route::get('posts/{count?}/{order?}', 'PostsApiController@index');
+    Route::get('hot/{count?}/{tag?}', 'HotPostsApiController@index');
     Route::get('source', function(){
         return App\Source::all();
     })->middleware('auth');
@@ -24,8 +25,9 @@ Route::prefix('api')->group(function(){
 */
 
 Route::get('/', function(){
-    $scores = Score::with(['Post'])->orderBy('score','desc')->take(15)->get();
-    return view('home')->with(compact('scores'));
+    $hot_posts = Score::with(['Post'])->orderBy('score','desc')->take(4)->get();
+    $recent_posts = Post::orderBy('posted_at', 'desc')->take(10)->get();
+    return view('home')->with(compact('hot_posts'))->with(compact('recent_posts'));
 });
 
 

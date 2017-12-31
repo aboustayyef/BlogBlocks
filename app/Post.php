@@ -105,6 +105,13 @@ class Post extends Model
         return $this->hasOne('App\Score');
     }
     
+    static function getHot($amount = 4, $tag = null)
+    {
+        if (!$tag) {
+            return Static::with('score')->sortByDesc('score.score')->take($amount)->get();
+        }
+    }
+
     public function getFacebookLikes(){
         // https://graph.facebook.com/?id=URL_GOES_HERE/&fields=og_object{engagement}
         $client = new Client();

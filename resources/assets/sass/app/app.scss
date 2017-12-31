@@ -1,1 +1,6 @@
-@import '~bulma/bulma'
+$primary: #b12530;
+body{
+    background-color:silver;
+}
+@import '~bulma/bulma';
+@import 'layout';
