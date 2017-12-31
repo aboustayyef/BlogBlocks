@@ -43,12 +43,10 @@ class Post extends Model
     {
         return Static::where('uid',$uid)->count() > 0;
     }
-
-    public static function uidExists($uid)
+    public static function url_exists($url)
     {
-        return Static::where('uid',$uid)->count() > 0;
+        return Static::where('url',$url)->count() > 0;
     }
-
 
     /*
         Images and Media

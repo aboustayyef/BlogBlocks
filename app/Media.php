@@ -41,7 +41,7 @@ class Media extends Model
         } 
         else if ($kind == 'post')
         {
-            $img->fit(600,300);
+            $img->fit(600,400);
         }
 
         // create unique name

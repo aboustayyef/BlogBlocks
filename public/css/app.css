@@ -1,7 +1,3 @@
-body {
-  background-color: silver;
-}
-
 /*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
@@ -11453,5 +11449,9 @@ label.panel-block:hover {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem;
+}
+
+html {
+  background-color: silver;
 }
 

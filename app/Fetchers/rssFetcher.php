@@ -60,7 +60,7 @@ class rssFetcher implements Fetchable
 	{
 		//filter out posts that already exist in the database
 		$new_links = $this->list_of_post_links->filter(function($item) {
-			return ! Post::uidExists($item['uid']);
+			return ! Post::uid_exists($item['uid']) && ! Post::url_exists($item['url']);
 		});
 		
 		$posts = $new_links->map(function($item){

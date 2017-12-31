@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-      <div class="card-image">
-        <figure class="image is-2by1" style="border-bottom:1px solid silver">
+      <div class="card-image" v-if="this.post.media.length > 0">
+        <figure class="image is-3by2" style="border-bottom:1px solid silver">
           <img :src="'/img/media/' + this.post.media[0].pointer" alt="Placeholder image">
         </figure>
       </div>
