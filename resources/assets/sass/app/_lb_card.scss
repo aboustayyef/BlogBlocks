@@ -1,0 +1,19 @@
+.lb-card{
+    background:white;
+    overflow:hidden;
+    height: 300px; //mobile
+    max-height:300px; //mobile
+    @media all and (min-width: $desktop)
+    {
+        height: 350px;
+        max-height:350px;
+    }
+    @media all and ( min-width : $widescreen ){
+        height: 450px;
+        max-height:450px;
+    }
+}
+
+.lb-card__section{
+    padding: 1rem;
+}

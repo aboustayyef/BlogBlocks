@@ -1,0 +1,9 @@
+html{
+    font-size:12px;
+    @media all and (min-width: $desktop){
+        font-size:14px;
+    }
+    @media all and (min-width: $widescreen){
+        font-size:16px;
+    }
+}
