@@ -3,7 +3,7 @@
         <h3 class="title is-4">Recent Posts</h3>
         <div class="columns is-multiline" v-if="loaded">
             <div v-for="post in posts" class="column is-one-fifth">
-              <hot-post-card :post="post"></hot-post-card>
+              <post-card :post="post"></post-card>
             </div>
         </div>
         <div v-else>

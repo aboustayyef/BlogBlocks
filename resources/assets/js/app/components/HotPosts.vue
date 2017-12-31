@@ -3,7 +3,7 @@
         <h3 class="title is-4">Hot Posts</h3>
         <div class="columns" v-if="loaded">
             <div v-for="score in scores" class="column is-one-quarter">
-                <hot-post-card :post="score.score.post"></hot-post-card>
+                <post-card :post="score.score.post"></post-card>
             </div>
         </div>
         <div v-else>

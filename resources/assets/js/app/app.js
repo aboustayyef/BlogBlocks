@@ -10,7 +10,7 @@ window.Vue = require('vue');
 
 Vue.component('hot-posts', require('./components/HotPosts.vue'));
 Vue.component('latest-posts', require('./components/LatestPosts.vue'));
-Vue.component('hot-post-card', require('./components/HotPostCard.vue'));
+Vue.component('post-card', require('./components/PostCard.vue'));
 
 const app = new Vue({
     el: '#app'
