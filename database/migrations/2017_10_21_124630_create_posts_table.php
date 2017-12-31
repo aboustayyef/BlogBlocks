@@ -19,11 +19,13 @@ class CreatePostsTable extends Migration
             $table->text('url');
             $table->text('excerpt')->nullable();
             $table->dateTime('posted_at'); 
-            $table->integer('source_id');
+            $table->integer('source_id')->unsigned();
             $table->text('original_image')->nullabe();
             $table->string('uid')->unique();
             $table->timestamps();
+            $table->foreign('source_id')->references('id')->on('sources')->onDelete('cascade');
         });
+     
     }
 
     /**

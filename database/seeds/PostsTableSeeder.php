@@ -27,8 +27,6 @@ class PostsTableSeeder extends Seeder
         // Remove Headers
         $posts = collect($csv->setOffset(1)->fetchAll());
 
-        DB::table('posts')->truncate();
-
         foreach ($posts as $key => $post) {
             $source_id = $this->find_id_from_shortname($post[5]);
             

@@ -21,6 +21,7 @@ class CreateScoresTable extends Migration
             $table->decimal('hours_ago')->nullable();
             $table->boolean('achieved_top_status')->default(0);
             $table->timestamps();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

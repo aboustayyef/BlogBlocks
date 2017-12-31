@@ -26,10 +26,6 @@ class TagsTableSeeder extends Seeder
             ['tech', 'Tech & Business', '#6C88A0'],
             ['media', 'Music, TV & Film', '#02A7A7'],
         ];
-
-        // Delete exisiting Tags in database to start anew
-        DB::Table('tags')->truncate();
-        DB::Table('source_tag')->truncate();
         
         // Add Level one items (items with no parents)
         foreach ($this->list as $item) {

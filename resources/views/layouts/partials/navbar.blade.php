@@ -53,7 +53,7 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="bd-tw-button button is-primary is-outlined" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
+                <a class="bd-tw-button button is-white is-outlined" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
                   <span class="icon">
                   <i class="fa fa-twitter"></i>
                 </span>
@@ -63,7 +63,7 @@
                 </a>
               </p>
               <p class="control">
-                <a class="button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
+                <a class="button is-white is-outlined" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
                   <span class="icon">
                   <i class="fa fa-download"></i>
                 </span>

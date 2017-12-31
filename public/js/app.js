@@ -12294,11 +12294,14 @@ var render = function() {
     _vm.loaded
       ? _c(
           "div",
-          { staticClass: "columns" },
+          { staticClass: "columns is-mobile is-multiline" },
           _vm._l(_vm.scores, function(score) {
             return _c(
               "div",
-              { staticClass: "column is-one-quarter" },
+              {
+                staticClass:
+                  "column is-half-mobile is-one-quarter-desktop is-one-quarter-tablet"
+              },
               [_c("post-card", { attrs: { post: score.score.post } })],
               1
             )
@@ -12416,11 +12419,14 @@ var render = function() {
     _vm.loaded
       ? _c(
           "div",
-          { staticClass: "columns is-multiline" },
+          { staticClass: "columns is-mobile is-multiline" },
           _vm._l(_vm.posts, function(post) {
             return _c(
               "div",
-              { staticClass: "column is-one-fifth" },
+              {
+                staticClass:
+                  "column is-one-fifth-desktop is-one-fifth-tablet is-half-mobile"
+              },
               [_c("post-card", { attrs: { post: post } })],
               1
             )
@@ -12507,23 +12513,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['post']
+  props: ['post'],
+  computed: {
+    hasImage: function hasImage() {
+      return this.post.media.length > 0;
+    }
+  }
 });
 
 /***/ }),
@@ -12534,10 +12531,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    this.post.media.length > 0
-      ? _c("div", { staticClass: "card-image" }, [
-          _c(
+  return _c(
+    "div",
+    { class: { "lb-card": true, "lb-card--no-image": !_vm.hasImage } },
+    [
+      this.post.media.length > 0
+        ? _c(
             "figure",
             {
               staticClass: "image is-3by2",
@@ -12552,62 +12551,21 @@ var render = function() {
               })
             ]
           )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-content" }, [
-      _c("div", { staticClass: "media" }, [
-        _vm._m(0),
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-content" }, [
+        _c("h1", { staticClass: "title is-6" }, [
+          _vm._v("\n       " + _vm._s(_vm.post.title) + "\n     ")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "media-content" }, [
-          _c("p", { staticClass: "title is-5" }, [
-            _vm._v(_vm._s(_vm.post.source.name))
-          ])
+        _c("h2", { staticClass: "subtitle is-7" }, [
+          _vm._v("\n        " + _vm._s(_vm.post.source.name) + "\n      ")
         ])
-      ]),
-      _vm._v(" "),
-      _vm._m(1)
-    ])
-  ])
+      ])
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-left" }, [
-      _c("figure", { staticClass: "image is-48x48" }, [
-        _c("img", {
-          attrs: {
-            src: "https://bulma.io/images/placeholders/48x48.png",
-            alt: "Placeholder image"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _vm._v(
-        "\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n      Phasellus nec iaculis mauris. "
-      ),
-      _c("a", [_vm._v("@bulmaio")]),
-      _vm._v(".\n      "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("#css")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("#responsive")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("time", { attrs: { datetime: "2016-1-1" } }, [
-        _vm._v("11:09 PM - 1 Jan 2016")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

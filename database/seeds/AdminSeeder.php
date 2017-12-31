@@ -14,10 +14,7 @@ class AdminSeeder extends Seeder
 
     
     public function run()
-    {
-        // Erase old Data
-        DB::table('users')->truncate();
-        
+    {        
         $admin = new User;
         $admin->name = "Mustapha";
         $admin->email = "mustapha.hamoui@gmail.com";

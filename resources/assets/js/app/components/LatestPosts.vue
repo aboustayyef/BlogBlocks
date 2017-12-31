@@ -1,8 +1,8 @@
 <template>
     <div>
         <h3 class="title is-4">Recent Posts</h3>
-        <div class="columns is-multiline" v-if="loaded">
-            <div v-for="post in posts" class="column is-one-fifth">
+        <div class="columns is-mobile is-multiline" v-if="loaded">
+            <div v-for="post in posts" class="column is-one-fifth-desktop is-one-fifth-tablet is-half-mobile">
               <post-card :post="post"></post-card>
             </div>
         </div>

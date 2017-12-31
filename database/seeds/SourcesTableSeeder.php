@@ -24,9 +24,6 @@ class SourcesTableSeeder extends Seeder
         // Remove Headers
         $sources = collect($csv->setOffset(1)->fetchAll());
 
-        DB::table('sources')->truncate();
-        DB::table('source_tag')->truncate();
-
         foreach ($sources as $key => $source) {
             $result = Source::create([
                 'name'              =>  trim($source[1]),
