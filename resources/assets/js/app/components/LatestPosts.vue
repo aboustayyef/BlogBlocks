@@ -3,7 +3,7 @@
         <h3 class="title is-4">Recent Posts</h3>
         <div class="columns is-mobile is-multiline" v-if="loaded">
             <div v-for="post in posts" class="column is-one-fifth-desktop is-one-fifth-tablet is-half-mobile">
-              <post-card :post="post"></post-card>
+              <post-card :post="post" small="true"></post-card>
             </div>
         </div>
         <div v-else>
