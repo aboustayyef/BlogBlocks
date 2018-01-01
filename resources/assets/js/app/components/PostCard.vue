@@ -4,10 +4,10 @@
         <img :src="'/img/media/' + this.post.media[0].pointer" alt="Placeholder image">
       </figure>
       <div class="lb-card__section">
-       <h1 class="title is-6">
-         {{post.title}}
+       <h1>
+         {{post.short_title}}
        </h1> 
-        <h2 class="subtitle is-7">
+        <h2>
           {{post.source.name}}
         </h2>
       </div>

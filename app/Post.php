@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $guarded = [];
+    protected $appends = ['short_title'];
     protected $dates = [
         'created_at',
         'updated_at',
@@ -97,6 +98,11 @@ class Post extends Model
             $image->post_id = $this->id;
             $image->save();
         }
+    }
+
+    public function getShortTitleAttribute()
+    {
+        return str_limit($this->title, 60);
     }
 
     public function score(){

@@ -1,19 +1,33 @@
 .lb-card{
     background:white;
     overflow:hidden;
-    height: 300px; //mobile
-    max-height:300px; //mobile
-    @media all and (min-width: $desktop)
-    {
-        height: 350px;
-        max-height:350px;
+    height: 250px; //mobile
+    max-height:250px; //mobile
+    font-size:1rem;
+    h1{
+        font-size: 1.1em;
+        line-height:1.1;
+        font-weight:bold;
     }
-    @media all and ( min-width : $widescreen ){
-        height: 450px;
-        max-height:450px;
+    h2{
+        font-size: 1em;
+    }
+    &--no-image{
+        display:flex;
+        align-items: center;
+        font-size:1.2rem;
+    }
+    @media all and (min-width: 380px)
+    {
+        height: 300px;
+        max-height:300px;
+    }
+    @media all and ( min-width : 500px ){
+        height: 400px;
+        max-height:400px;
     }
 }
 
 .lb-card__section{
-    padding: 1rem;
+    padding: 0.5em;
 }
