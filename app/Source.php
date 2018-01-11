@@ -87,12 +87,11 @@ class Source extends Model
             'url'   =>  'required|url',
             'nickname'=> 'required|alpha_num',
             'description'   =>  'max:140',
-            'twitter'  =>   'required|alpha_dash',
             'fetcher_source'   =>  'required|url',      
             'fetcher_kind'   =>  'in:'. implode(',', $available_fetcher_kinds),      
        ];
        if ($create) {
-           $rules['nickname'] .= '|unique:blogs';
+           $rules['nickname'] .= '|unique:sources';
        }
        return $rules;
     }
