@@ -4,7 +4,7 @@
     <nav class="navbar is-transparent is-primary">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
-          <img src="https://lebaneseblogs.com/img/logo.png" alt="Bulma: a modern CSS framework based on Flexbox" height="46">
+          <img src="{{asset('/img/logo.png')}}" alt="{{env('APP_DESCRIPTION')}}">
         </a>
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
           <span></span>

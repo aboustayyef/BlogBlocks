@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Lebanese Blogs Admin
+                {{env('APP_NAME')}} Admin
             </a>
         </div>
 
