@@ -14,7 +14,7 @@ class SourceFrequencyUpdater extends Command
      *
      * @var string
      */
-    protected $signature = 'lb:update_frequency';
+    protected $signature = 'app:update_frequency';
 
     /**
      * The console command description.

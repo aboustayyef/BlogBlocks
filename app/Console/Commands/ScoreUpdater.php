@@ -15,7 +15,7 @@ class ScoreUpdater extends Command
      *
      * @var string
      */
-    protected $signature = 'lb:update_scores';
+    protected $signature = 'app:update_scores';
 
     /**
      * The console command description.

@@ -12,7 +12,7 @@ class PostsUpdater extends Command
      *
      * @var string
      */
-    protected $signature = 'lb:update_posts {source?}';
+    protected $signature = 'app:update_posts {source?}';
 
     /**
      * The console command description.
