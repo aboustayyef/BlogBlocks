@@ -20,7 +20,8 @@ class Score extends Model
             $post = $score->post;
             $media= $post->media;
             $source = $post->source;
-            $results->push(['score'=>$score]);
+            $sc = $post->score;
+            $results->push(['post'=>$post]);
         }
         return $results;
     }

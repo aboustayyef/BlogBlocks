@@ -4,6 +4,5 @@
 @stop
 @section('content')
     <hot-posts></hot-posts>
-    <hr>
     <latest-posts></latest-posts>
 @stop

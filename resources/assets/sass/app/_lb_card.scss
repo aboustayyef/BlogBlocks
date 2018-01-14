@@ -1,19 +1,15 @@
+
 .card-aspect-ratio{
     width:100%;
-    padding-top: (13px / 8px) * 100%;
+    padding-top: 125%; // the closer down to hundred, the more fat/squarish
     position:relative;
     overflow:scroll;
+    background:white;
 }
 
-.is-2-desktop, .is-2-tablet {
-    font-size:1.1vw;
-}
-.is-one-quarter-desktop h1, .is-one-quarter-tablet h1, .is-one-quarter-desktop h2, .is-one-quarter-tablet h2{
-    font-size: 1.5vw;
-}
-
-.is-half-mobile{
-    font-size: 3vw;
+.small-card {
+    font-size: 0.9em;
+    padding-top:140%;
 }
 
 .lb-card{
@@ -24,14 +20,9 @@
     width:100%;
     display:flex;
     flex-direction:column;
-    background:white;
     justify-content:space-between;
     overflow:hidden;
-
-    h1{
-        line-height:1.1;
-        font-weight:bold;
-    }
+    border: 1px solid #bdbdbd;
 }
 
 .lb-card__section{
@@ -40,4 +31,21 @@
     flex-direction:column;
     justify-content:space-between;
     flex-grow: 1;
+}
+
+.small-card .lb-card__section{
+    //small cards have less padding
+    padding: 0.5em 0.3em;
+}
+
+
+// Note: All responsive font sizing happens in _layout.scss
+
+.lb-card__title{
+    line-height:1.1;
+    font-weight:bold;
+}
+
+.lb-card__source-name{
+    font-size:0.9em
 }
