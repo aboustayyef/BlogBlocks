@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="title is-4">Recent Posts</h3>
+        <h3 class="pop title is-4">Recent Posts</h3>
         <div class="columns is-mobile is-multiline" v-if="loaded">
             <div v-for="post in posts" class="column is-2-desktop is-2-tablet is-6-mobile">
               <post-card :post="post" small="true"></post-card>

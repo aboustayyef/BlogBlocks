@@ -3,7 +3,7 @@
     width:100%;
     padding-top: 125%; // the closer down to hundred, the more fat/squarish
     position:relative;
-    overflow:scroll;
+    overflow:hidden;
     background:white;
 }
 
@@ -48,4 +48,13 @@
 
 .lb-card__source-name{
     font-size:0.9em
+}
+.pop{
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-style: italic;
+    padding: 0.5em 0;
+    text-shadow: 2px 2px white;
+    font-family: sans-serif;
+    letter-spacing: -1px;
 }
