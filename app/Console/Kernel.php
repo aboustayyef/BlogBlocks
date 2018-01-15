@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('lb:update_posts')->hourly();
-        $schedule->command('lb:update_scores')->hourlyAt(20); // example: 1:20, 2:20..etc
+        $schedule->command('lb:update_posts')->everyFifteenMinutes();
+        $schedule->command('lb:update_scores')->everyFifteenMinutes();
     }
 
     /**
