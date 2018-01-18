@@ -16,6 +16,10 @@ class SourcesTableSeeder extends Seeder
     
     public function run()
     {
+
+        // If the Sources don't exist, import them using the following query (for digital ocean), or sequel pro for local:
+        // SELECT * FROM blogs INTO OUTFILE '/var/lib/mysql-files/sources.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
         $fileLocation = database_path(). '/sources.csv';
 
         // Get CSV content from goods.csv in storage
