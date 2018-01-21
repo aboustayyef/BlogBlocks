@@ -9,7 +9,7 @@ class PostsApiController extends Controller
     public function index($count = 12, $order='latest')
     {
         if ($order == 'latest') {
-            return \App\Post::with(['media','source'])->orderBy('posted_at','desc')->take($count)->get();
+            return \App\Post::with(['media','source','score'])->orderBy('posted_at','desc')->take($count)->get();
         }
     }
 }

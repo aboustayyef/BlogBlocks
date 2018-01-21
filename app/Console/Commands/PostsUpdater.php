@@ -52,7 +52,7 @@ class PostsUpdater extends Command
             throw new \Exception("Source [" . $this->argument('source') . "] not found", 1);
         }
         
-        // If No source is specified
+        // If No source is specified, update all *Active* sources
         $sources = Source::where('active', 1)->get();
         $start_time = time();
         foreach ($sources as $source) {

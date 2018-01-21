@@ -25,9 +25,7 @@ Route::prefix('api')->group(function(){
 */
 
 Route::get('/', function(){
-    $hot_posts = Score::with(['Post'])->orderBy('score','desc')->take(4)->get();
-    $recent_posts = Post::orderBy('posted_at', 'desc')->take(12)->get();
-    return view('home')->with(compact('hot_posts'))->with(compact('recent_posts'));
+    return view('home');
 });
 
 

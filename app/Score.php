@@ -11,21 +11,7 @@ class Score extends Model
     {
         return $this->belongsTo('App\Post');
     }
-
-    public static function hot($count = 4)
-    {
-        $scores = Static::orderBy('score','desc')->take($count)->get();
-        $results = collect([]);
-        foreach ($scores as $score) {
-            $post = $score->post;
-            $media= $post->media;
-            $source = $post->source;
-            $sc = $post->score;
-            $results->push(['post'=>$post]);
-        }
-        return $results;
-    }
-
+    
     public static function updateTopPost()
     {
         // Find the item with the highest score;

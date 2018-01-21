@@ -76,13 +76,28 @@ class ScoreUpdater extends Command
                 }
             }
 
-            $score->score = round( ($score->likes * 100) / pow($t, $gravity), 2);
+            $score->latest_score = round( ($score->likes * 100) / pow($t, $gravity), 2);
 
             $minimum_needed_likes = 10;
             if ($score->likes < $minimum_needed_likes) {
-                $score->score = 0;
+                $score->latest_score = 0;
             }
+
+            // If the score is larger than the best score this post got, set it as best score
+            if ($score->best_score) {
+                 if ($score->latest_score > $score->best_score) {
+                    $score->best_score = $score->latest_score;
+                 }
+             } else {
+                $score->best_score = $score->latest_score;
+             }
+
+
             $score->save();
+            $post->latest_score = $score->latest_score;
+            $post->best_score = $score->best_score;
+            $post->save();
+
         }
     }
 }

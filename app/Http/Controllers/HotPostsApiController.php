@@ -10,7 +10,7 @@ class HotPostsApiController extends Controller
     public function index($count = 4, $tag = null)
     {
         if (!$tag) {
-            return response()->json(Score::hot(4));
+            return \App\Post::with(['media','source','score'])->orderBy('latest_score','desc')->take($count)->get();
         }
     }
 }
