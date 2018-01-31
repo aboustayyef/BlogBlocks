@@ -9,7 +9,9 @@
 
 .small-card {
     font-size: 0.9em;
-    padding-top:140%;
+    @media all and (min-width: $tablet){
+        padding-top:140%;
+    }
 }
 
 .lb-card{
@@ -48,13 +50,4 @@
 
 .lb-card__source-name{
     font-size:0.9em
-}
-.pop{
-    text-transform: uppercase;
-    font-weight: bolder;
-    font-style: italic;
-    padding: 0.5em 0;
-    text-shadow: 2px 2px white;
-    font-family: sans-serif;
-    letter-spacing: -1px;
 }
