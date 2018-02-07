@@ -3,6 +3,16 @@
     Home Page
 @stop
 @section('content')
-    <hot-posts></hot-posts>
-    <latest-posts></latest-posts>
+    <post-group 
+        size="large" 
+        title="Hot Posts"
+        apisource="/api/hot/4"
+    ></post-group>
+    
+    <post-group 
+        size="small" 
+        title="Latest Posts"
+        apisource="/api/posts/18"
+    ></post-group>
+
 @stop
