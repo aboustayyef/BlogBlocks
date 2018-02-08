@@ -1,7 +1,7 @@
 <template>
   <div :class="{'card-aspect-ratio':true, 'small-card': size=='small'}">
       <div class="lb-card">
-        <figure class="image" style="border-bottom:1px solid silver">
+        <figure class="image is-3by2" style="background-color: silver; border-bottom:1px solid silver">
           <img v-if="hasImage" :src="'/img/media/' + this.post.media[0].pointer" alt="Placeholder image">
           <img v-else :src="'/img/placeholder_600x400.svg'" alt="Placeholder image">
         </figure>
