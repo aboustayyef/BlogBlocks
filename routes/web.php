@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\Score;
+use App\Source;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,6 @@ Route::prefix('api')->group(function(){
     })->middleware('auth');
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +28,11 @@ Route::get('/', function(){
     return view('home');
 });
 
+Route::get('/test/{nickname}', function($nickname){
+    $b = Source::where('nickname',$nickname)->first();
+    $p = $b->posts()->orderBy('posted_at','desc')->take(1)->get()->first();
+    return response()->json($p->getTwitterCounts());
+});
 
 /*
 |--------------------------------------------------------------------------
