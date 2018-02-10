@@ -1,5 +1,6 @@
 <?php
 
+use App\Analyzers\TwitterCounter;
 use App\Post;
 use App\Score;
 use App\Source;
@@ -28,10 +29,8 @@ Route::get('/', function(){
     return view('home');
 });
 
-Route::get('/test/{nickname}', function($nickname){
-    $b = Source::where('nickname',$nickname)->first();
-    $p = $b->posts()->orderBy('posted_at','desc')->take(1)->get()->first();
-    return response()->json($p->getTwitterCounts());
+Route::get('/test/{url}', function($url){
+    TwitterCounter::count($url);
 });
 
 /*
