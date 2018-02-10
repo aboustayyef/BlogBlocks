@@ -30,7 +30,7 @@ Route::get('/', function(){
 });
 
 Route::get('/test/{url}', function($url){
-    TwitterCounter::count($url);
+    return TwitterCounter::count($url, false);
 });
 
 /*

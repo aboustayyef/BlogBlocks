@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Analyzers\TwitterCounter;
 use App\Media;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -117,23 +118,7 @@ class Post extends Model
     }
 
     public function getTwitterCounts(){
-
-        $settings = array(
-            'oauth_access_token' => env('TWITTER_ACCESS_TOKEN'),
-            'oauth_access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
-            'consumer_key' => env('TWITTER_CONSUMER_KEY'),
-            'consumer_secret' => env('TWITTER_CONSUMER_SECRET')
-        );
-
-        $url = 'https://api.twitter.com/1.1/search/tweets.json';
-        $requestMethod = 'GET';
-        $getfield = '?q=' . $this->url ;
-
-        $twitter = new \TwitterAPIExchange($settings);
-        $response = json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());
-        $statuses = collect($response->statuses);
-        $count = $statuses->count();
-        return $count;
+        return TwitterCounter::count($this->url);
     }
 
     public function getFacebookLikes(){
