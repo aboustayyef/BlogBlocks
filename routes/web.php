@@ -14,6 +14,7 @@ use App\Source;
 Route::prefix('api')->group(function(){
     Route::get('posts/{count?}/{order?}', 'PostsApiController@index');
     Route::get('hot/{count?}/{tag?}', 'HotPostsApiController@index');
+    Route::get('registerExit/{post}', 'ExitController@index');
     Route::get('source', function(){
         return App\Source::all();
     })->middleware('auth');
