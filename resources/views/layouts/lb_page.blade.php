@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{{mix('/css/app.css')}}">
 </head>
 <body>
+<script>
+  var App_Token = "{{ csrf_token() }}";
+</script>
 <!-- Navigation Section -->
 @include('layouts.partials.navbar')
 <!-- /Section -->

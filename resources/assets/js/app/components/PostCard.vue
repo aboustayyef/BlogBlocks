@@ -1,6 +1,6 @@
 <template>
   <div :class="{'card-aspect-ratio':true, 'small-card': size=='small'}">
-      <div class="lb-card">
+      <div class="lb-card" @click="goto_post()">
         <figure class="image is-3by2" :style="{backgroundColor: dominantColor}">
           <img v-if="hasImage" :src="'/img/media/' + this.post.media[0].pointer" alt="Placeholder image">
           <img v-else :src="'/img/placeholder_600x400.svg'" alt="Placeholder image">
@@ -20,6 +20,13 @@
 <script>
     export default {
     props: ['post','size'] ,
+    methods:{
+      goto_post: function()
+      {
+        let url = '/exit?id=' + this.post.id + '&session_id=' + App_Token;
+        window.location = url;
+      }
+    },
     computed: {
         hasImage: function()
         {
