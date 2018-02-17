@@ -1,5 +1,5 @@
 <template>
-    <aside id="sidebar" style="padding:0 1em" class="column is-2">
+    <aside id="sidebar" class="column is-2">
         <div class="title is-5">Side info</div>
         <p class="is-4">
             <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, at ipsa quidem sint minima laudantium reprehenderit repudiandae voluptas voluptate facilis quas! Consequatur unde natus sint pariatur explicabo quam doloribus quae.</div>

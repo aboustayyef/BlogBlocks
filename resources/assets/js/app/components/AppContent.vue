@@ -13,7 +13,7 @@
                 :settings="settings"
                 size="small" 
                 title="Latest Posts"
-                apisource="/api/posts/18"
+                apisource="/api/posts/12"
             ></post-group>
         </div>
     </div>

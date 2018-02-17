@@ -1,4 +1,5 @@
 <template>
+    
     <div class="columns">
         <!-- If sidebar is on the left side -->
         <app-sidebar v-if="settings.sidebar_on && settings.sidebar_location=='left'" :settings="settings"></app-sidebar>
@@ -10,6 +11,7 @@
         <app-sidebar v-if="settings.sidebar_on && settings.sidebar_location=='right'" :settings="settings"></app-sidebar>
 
     </div>
+
 </template>
 <script>
     export default {
