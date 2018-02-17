@@ -1,6 +1,6 @@
 <template>
 
-    <div :class="{'column':true, 'is-10':sidebarExists, 'is-12':!sidebarExists}">
+    <div :class="{'column':true, 'is-10':settings.sidebar_on, 'is-12':!settings.sidebar_on}">
         <div id="posts" > 
             <post-group 
                 :settings="settings"
@@ -22,14 +22,5 @@
 <script>
     export default {
         props:['settings'],
-        computed: {
-            sidebarExists: function(){
-                if (this.settings.sidebar == "left" || this.settings.sidebar == "right") {
-                    return true;
-                }
-                return false;
-            }
-        }
-
     }
 </script>
