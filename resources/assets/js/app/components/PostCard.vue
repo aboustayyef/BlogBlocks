@@ -1,6 +1,6 @@
 <template>
   <div :class="{'card-aspect-ratio':true, 'small-card': size=='small'}">
-      <div class="lb-card" @click="register_exit()">
+      <div class="lb-card" @click="exit()">
         <figure class="image is-3by2" :style="{backgroundColor: dominantColor}">
           <img v-if="hasImage" :src="'/img/media/' + this.post.media[0].pointer" alt="Placeholder image">
           <img v-else :src="'/img/placeholder_600x400.svg'" alt="Placeholder image">
@@ -21,7 +21,7 @@
     export default {
     props: ['post','size'] ,
     methods:{
-      register_exit: function()
+      exit: function()
       {
         axios.get('/api/registerExit/'+this.post.id+'?session_id='+App_Token, (d) => {}) 
           .then((d)=> {

@@ -8,6 +8,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('app', require('./components/App.vue'));
 Vue.component('post-group', require('./components/PostGroup.vue'));
 Vue.component('post-card', require('./components/PostCard.vue'));
 
