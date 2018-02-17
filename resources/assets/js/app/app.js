@@ -9,6 +9,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('app', require('./components/App.vue'));
+Vue.component('app-content', require('./components/AppContent.vue'));
+Vue.component('app-sidebar', require('./components/AppSidebar.vue'));
 Vue.component('post-group', require('./components/PostGroup.vue'));
 Vue.component('post-card', require('./components/PostCard.vue'));
 

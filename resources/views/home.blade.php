@@ -2,6 +2,8 @@
 @section('title')
     Home Page
 @stop
-@section('content')
-    <app></app>
+@section('app')
+    <div id="app">
+        <app></app>
+    </div>
 @stop

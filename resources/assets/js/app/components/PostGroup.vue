@@ -3,7 +3,7 @@
         <h3 class="pop">{{title}}</h3>
         <div class="columns is-mobile is-multiline" v-if="loaded">
             <div v-for="post in posts" :class="cardClassList">
-                <post-card :post="post" :size="size"></post-card>
+                <post-card :settings="settings" :post="post" :size="size"></post-card>
             </div>
         </div>
         <div v-else>
@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        props: ['title', 'size', 'apisource', 'count'],
+        props: ['settings', 'title', 'size', 'apisource', 'count'],
         data(){
             return {
                 posts:[],

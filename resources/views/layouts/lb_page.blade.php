@@ -18,19 +18,7 @@
 <!--  Content  -->
 <div id="content" class="section">
   <div class="container">
-    <div class="columns">
-      <div id="posts" class="column is-10"> 
-        <div id="app">@yield('content')</div>
-      </div>
-
-      <aside id="sidebar" style="padding:0 1em">
-        <div class="title is-5">Side info</div>
-        <p class="is-4">
-          <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, at ipsa quidem sint minima laudantium reprehenderit repudiandae voluptas voluptate facilis quas! Consequatur unde natus sint pariatur explicabo quam doloribus quae.</div>
-        </p>
-      </aside>
-      <!-- Sidebar -->
-    </div>
+    @yield('app')
   </div>
 </div>
 <script src="{{mix('/js/app.js')}}"></script>    
