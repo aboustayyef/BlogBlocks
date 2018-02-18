@@ -4,6 +4,6 @@
 @stop
 @section('app')
     <div id="app">
-        <app></app>
+        <app debug="{{env('APP_DEBUG') ? 'true' : 'false'}}"></app>
     </div>
 @stop

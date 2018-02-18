@@ -6,12 +6,18 @@
     position:relative;
     overflow:hidden;
     background:white;
+    &.debug{
+        padding-top:150%;
+    }
 }
 
 .small-card {
     font-size: 0.9em;
     @media all and (min-width: $tablet){
         padding-top:140%;
+        &.debug{
+            padding-top:190%;
+        }
     }
 }
 
