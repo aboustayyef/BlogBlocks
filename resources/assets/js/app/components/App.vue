@@ -8,6 +8,7 @@
         </app-sidebar>
 
         <!-- Content of Page -->
+        
         <app-content  :settings="settings"></app-content>
 
         <!-- If sidebar is on the right side -->

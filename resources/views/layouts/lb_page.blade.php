@@ -20,7 +20,26 @@
   <div class="container">
     @yield('app')
   </div>
+
+
+
 </div>
+    
+    @if(env('APP_DEBUG'))
+    <!-- Debugging Info, -->
+        <div class="section">
+            <div class="field is-grouped is-grouped-multiline">
+            @foreach($_SERVER as $key => $value)
+                <div class="control">
+                    <div class="tags has-addons">
+                        <span class="tag is-dark">{{$key}}</span>
+                        <span class="tag is-info" title="{{$value}}">{{str_limit($value, 20)}}</span>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        </div>
+    @endif
 <script src="{{mix('/js/app.js')}}"></script>    
 </body>
 </html>

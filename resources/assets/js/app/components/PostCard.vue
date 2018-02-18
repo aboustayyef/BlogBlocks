@@ -10,6 +10,9 @@
 
         <div class="lb-card__section">
 
+          <!-- Meta Info -->
+          <card-meta :hours="Math.ceil(post.score.hours_ago)" :score="post.latest_score"></card-meta>
+
           <!-- Post Title -->
           <h1 class="lb-card__title">
            {{post.short_title}}
@@ -19,7 +22,7 @@
           <div v-if="settings.debug" style="margin-top:1em">
             <div class="tags">
               <span class="tag is-small is-warning">fb:{{post.score.likes}}</span>
-              <span class="tag is-small is-warning">hours: {{post.score.hours_ago}}</span>
+              <span class="tag is-small is-warning">hours:{{Math.ceil(post.score.hours_ago)}}</span>
               <span class="tag is-small is-warning">latest:{{post.latest_score}}</span>
               <span class="tag is-small is-warning">best:{{post.best_score}}</span>
             </div>

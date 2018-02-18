@@ -41,7 +41,13 @@ class ScoreUpdater extends Command
      */
     public function handle()
     {
-        $posts = Post::orderBy('posted_at','desc')->take(100)->get();
+        $threeDaysAgo = (new Carbon)->subDays(3);
+        $posts = Post::where('posted_at', '>', $threeDaysAgo)->get();
+
+        $this->info(''); // empty line 
+        $this->comment(str_repeat('=', 100));
+        $this->comment('Updating the score of ' . $posts->count() . ' posts from the last three days');
+        $this->comment(str_repeat('=', 100));
 
         foreach ($posts as $post) {
             $this->info('Getting Score for [ ' . $post->title . ' ]' );

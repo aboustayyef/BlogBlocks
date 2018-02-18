@@ -13,6 +13,7 @@ Vue.component('app-content', require('./components/AppContent.vue'));
 Vue.component('app-sidebar', require('./components/AppSidebar.vue'));
 Vue.component('post-group', require('./components/PostGroup.vue'));
 Vue.component('post-card', require('./components/PostCard.vue'));
+Vue.component('card-meta', require('./components/CardMeta.vue'));
 
 const app = new Vue({
     el: '#app'
