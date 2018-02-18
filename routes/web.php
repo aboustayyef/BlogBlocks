@@ -4,6 +4,7 @@ use App\Analyzers\TwitterCounter;
 use App\Post;
 use App\Score;
 use App\Source;
+use App\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,10 @@ use App\Source;
 Route::prefix('api')->group(function(){
     Route::get('posts/{count?}/{order?}', 'PostsApiController@index');
     Route::get('hot/{count?}/{tag?}', 'HotPostsApiController@index');
+
+    // To Do -> remove from API and make special exit router
     Route::get('registerExit/{post}', 'ExitController@index');
+
     Route::get('source', function(){
         return App\Source::all();
     })->middleware('auth');
@@ -28,6 +32,13 @@ Route::prefix('api')->group(function(){
 
 Route::get('/', function(){
     return view('home');
+});
+
+Route::get('/tag/{tag}', function($tag){
+    if (! Tag::exists($tag)) {
+        abort(404);
+    };
+    return view('home')->with('tag', $tag);
 });
 
 Route::get('/test/{url}', function($url){

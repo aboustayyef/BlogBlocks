@@ -4,6 +4,11 @@
 @stop
 @section('app')
     <div id="app">
-        <app debug="{{env('APP_DEBUG') ? 'true' : 'false'}}"></app>
+        <app 
+            debug="{{env('APP_DEBUG') ? 'true' : 'false'}}"
+            @if(isset($tag))
+            tag="{{$tag}}"
+            @endif
+        ></app>
     </div>
 @stop

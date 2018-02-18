@@ -57,8 +57,11 @@
         },
         dominantColor: function()
         {
-          let cols = eval(this.post.media[0].dominant_color);
-          return 'rgb(' + cols[0] + ',' + cols[1] + ',' + cols[2] + ')';
+          if ( this.post.media.length > 0) {
+            let cols = eval(this.post.media[0].dominant_color);
+            return 'rgb(' + cols[0] + ',' + cols[1] + ',' + cols[2] + ')';
+          }
+          return 'rgb(0,0,0)';
         }
       }
     }

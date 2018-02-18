@@ -6,7 +6,7 @@
                 :settings="settings"
                 size="large" 
                 title="Hot Posts"
-                apisource="/api/hot/4"
+                :apisource= "hotPostsApiSource"
             ></post-group>
             
             <post-group 
@@ -21,6 +21,20 @@
 </template>
 <script>
     export default {
-        props:['settings'],
+        props:['settings','tag'],
+        computed: {
+            hotPostsApiSource: function(){
+                if (this.tag) {
+                  return '/api/hot/4/' + this.tag;  
+                }
+                return '/api/hot/4';
+            },
+            latestPostsApiSource: function(){
+                if (this.tag) {
+                    return '/api/posts/12'
+                }
+                return '/api/posts/12';
+            },    
+        }
     }
 </script>

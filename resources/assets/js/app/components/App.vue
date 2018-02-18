@@ -9,7 +9,7 @@
 
         <!-- Content of Page -->
         
-        <app-content  :settings="settings"></app-content>
+        <app-content  :settings="settings" :tag="tag"></app-content>
 
         <!-- If sidebar is on the right side -->
         <app-sidebar v-if="settings.sidebar_on && settings.sidebar_location=='right'" 
@@ -22,7 +22,7 @@
 </template>
 <script>
     export default {
-        props: ['debug'],
+        props: ['debug','tag'],
         data: function(){
             return {
                 settings: {
