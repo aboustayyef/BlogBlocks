@@ -2,7 +2,6 @@
 
 use App\Post;
 use App\Source;
-use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use League\Csv\Reader;
@@ -43,8 +42,6 @@ class PostsTableSeeder extends Seeder
                             'uid'               =>  $uid,
                             'source_id'         =>  $source_id 
                         ]);
-                        $tags = Tag::createListFromString($post[4]);
-                        $new_post->tags()->attach($tags);
                         $new_post->cacheImage();
                     } catch (\Exception $e) {
                         //error in a particular post. Skip                        

@@ -100,9 +100,4 @@ class Source extends Model
     {
       return (new SourceFrequencyAnalyzer($this, $sample_size))->median;
     }
-
-    public function tags()
-    {
-      return $this->BelongsToMany('App\Tag');
-    }
 }

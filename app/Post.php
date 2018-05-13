@@ -33,11 +33,6 @@ class Post extends Model
       return $this->hasMany('App\Media');
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany('App\Tag');
-    }
-
     /*
         Utility Functions
      */ 
@@ -110,11 +105,9 @@ class Post extends Model
         return $this->hasOne('App\Score');
     }
     
-    static function getHot($amount = 4, $tag = null)
+    static function getHot($amount = 4)
     {
-        if (!$tag) {
-            return Static::with('score')->sortByDesc('score.score')->take($amount)->get();
-        }
+        return Static::with('score')->sortByDesc('score.score')->take($amount)->get();
     }
 
     public function getTwitterCounts(){

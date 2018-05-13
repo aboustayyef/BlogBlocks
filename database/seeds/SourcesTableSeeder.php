@@ -1,7 +1,6 @@
 <?php
 
 use App\Source;
-use App\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
@@ -41,10 +40,6 @@ class SourcesTableSeeder extends Seeder
                 'active'            =>  $source[9],
                 'why_deactivated'   =>  $source[16]
             ]);
-
-            // Attach Tags to Sources
-            $tags = Tag::createListFromString($source[7]);              
-            $result->tags()->attach($tags);                             // attach
         }   
     }
 }
